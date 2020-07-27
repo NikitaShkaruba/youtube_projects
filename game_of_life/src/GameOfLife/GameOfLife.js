@@ -91,16 +91,17 @@ export default class GameOfLife extends React.Component {
     computeAliveNeighboursAmount(columnIndex, rowIndex) {
         let aliveNeighboursAmount = 0;
 
-        const neighbourOffsets = [
-            [-1, 0], // left
-            [-1, 1], // top left
-            [0, 1], // top
-            [1, 1], // top right
-            [1, 0], // right
-            [1, -1], // bottom right
-            [0, -1], // bottom
-            [-1, -1], // bottom left
-        ];
+        const neighbourOffsets = [];
+
+        // Calculating the relative coordinates of neighbours
+        for(let i = -1; i <= 1; i++) { // horizontal offset
+            for(let j = -1; j <= 1; j++) { // vertical offset
+                if(i === 0 && j === 0) continue; // [0, 0] is given point (not a neighbour)
+                neighbourOffsets.push([i, j]);
+            }
+        }
+
+        console.log(neighbourOffsets);
 
         for (const neighbourOffsetKey in neighbourOffsets) {
             const [xOffset, yOffset] = neighbourOffsets[neighbourOffsetKey];
