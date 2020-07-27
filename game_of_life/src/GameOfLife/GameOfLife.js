@@ -72,12 +72,10 @@ export default class GameOfLife extends React.Component {
         const currentCellState = this.state.cells[columnIndex][rowIndex];
 
         if (currentCellState === GameOfLife.cellState.ALIVE) {
-            if (aliveNeighboursAmount < 2) {
-                return GameOfLife.cellState.DEAD;
-            } else if (aliveNeighboursAmount === 2 || aliveNeighboursAmount === 3) {
-                return GameOfLife.cellState.ALIVE;
-            } else if (aliveNeighboursAmount > 3) {
-                return GameOfLife.cellState.DEAD;
+            if(aliveNeighboursAmount === 2 || aliveNeighboursAmount === 3) {
+                return GameOfLife.cellState.ALIVE
+            } else {
+                return GameOfLife.cellState.DEAD
             }
         } else {
             if (aliveNeighboursAmount === 3) {
