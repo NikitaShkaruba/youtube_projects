@@ -154,10 +154,6 @@ export default class GameOfLife extends React.Component {
         );
     }
 
-    mouseOverHandler() {
-        console.log("hello!");
-    }
-
     renderColumn(rows, columnIndex) {
         return (
             <div className="GameOfLife__column" key={`column_${columnIndex}`}>
@@ -166,7 +162,7 @@ export default class GameOfLife extends React.Component {
                     return <div
                         className={`GameOfLife__cell GameOfLife__cell--${cellModifier}`}
                         key={`cell_${columnIndex}_${rowIndex}`}
-                        onMouseOverCapture={() => this.toggleCellState(columnIndex, rowIndex)}
+                        onClick={() => this.toggleCellState(columnIndex, rowIndex)}
                     />
                 })}
             </div>
