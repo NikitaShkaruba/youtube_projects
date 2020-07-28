@@ -72,7 +72,7 @@ export default class GameOfLife extends React.Component {
         const currentCellState = this.state.cells[columnIndex][rowIndex];
 
         if (currentCellState === GameOfLife.cellState.ALIVE) {
-            if(aliveNeighboursAmount === 2 || aliveNeighboursAmount === 3) {
+            if (aliveNeighboursAmount === 2 || aliveNeighboursAmount === 3) {
                 return GameOfLife.cellState.ALIVE
             } else {
                 return GameOfLife.cellState.DEAD
@@ -92,10 +92,10 @@ export default class GameOfLife extends React.Component {
         const neighbourOffsets = [];
 
         // Calculating the relative coordinates of neighbours
-        for(let i = -1; i <= 1; i++) { // horizontal offset
-            for(let j = -1; j <= 1; j++) { // vertical offset
-                if(i === 0 && j === 0) continue; // [0, 0] is given point (not a neighbour)
-                neighbourOffsets.push([i, j]);
+        for (let horizontalOffset = -1; horizontalOffset <= 1; horizontalOffset++) {
+            for (let verticalOffset = -1; verticalOffset <= 1; verticalOffset++) {
+                if (horizontalOffset === 0 && verticalOffset === 0) continue; // [0, 0] is given point (not a neighbour)
+                neighbourOffsets.push([horizontalOffset, verticalOffset]);
             }
         }
 
@@ -154,6 +154,10 @@ export default class GameOfLife extends React.Component {
         );
     }
 
+    mouseOverHandler() {
+        console.log("hello!");
+    }
+
     renderColumn(rows, columnIndex) {
         return (
             <div className="GameOfLife__column" key={`column_${columnIndex}`}>
@@ -162,7 +166,7 @@ export default class GameOfLife extends React.Component {
                     return <div
                         className={`GameOfLife__cell GameOfLife__cell--${cellModifier}`}
                         key={`cell_${columnIndex}_${rowIndex}`}
-                        onClick={() => this.toggleCellState(columnIndex, rowIndex)}
+                        onMouseOverCapture={() => this.toggleCellState(columnIndex, rowIndex)}
                     />
                 })}
             </div>
